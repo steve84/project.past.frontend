@@ -10,7 +10,7 @@ const orderRoutes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(orderRoutes)
+        RouterModule.forChild(orderRoutes)
     ],
     exports: [
         RouterModule

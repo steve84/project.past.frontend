@@ -18,7 +18,7 @@ export class OrderTableComponent implements OnInit {
 
     ngOnInit() {
         this.data = this.orderService.getOrders().pipe(
-            map(data => data['_items'])
+            map(data => data._items)
         );
     }
 
