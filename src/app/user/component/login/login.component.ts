@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
         this.userService.login(this.loginForm.get('username').value, this.loginForm.get('password').value)
             .pipe(take(1))
             .subscribe((resp: any) => {
-                debugger
                 localStorage.setItem('token', resp.token);
             });
     }

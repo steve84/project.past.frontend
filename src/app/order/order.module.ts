@@ -4,7 +4,7 @@ import { OrderTableComponent } from './component/table/order-table/order-table.c
 import { OrderService } from './service/order.service';
 import { OrderRoutingModule } from './order-routing.module';
 import { MatTableModule } from '@angular/material/table';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
     declarations: [
         OrderTableComponent
@@ -12,7 +12,8 @@ import { MatTableModule } from '@angular/material/table';
     imports: [
         OrderRoutingModule,
         CommonModule,
-        MatTableModule
+        MatTableModule,
+        MatPaginatorModule
     ],
     providers: [
         OrderService

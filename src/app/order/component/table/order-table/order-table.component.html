@@ -1,4 +1,5 @@
-<table mat-table [dataSource]="data | async" class="mat-elevation-z8">
+<div *ngIf="(data | async) as data">
+    <table mat-table [dataSource]="data._items" class="mat-elevation-z8">
     <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
         <th mat-header-cell *matHeaderCellDef> {{column}} </th>
         <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
@@ -7,3 +8,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<mat-paginator [length]="data._meta.total"
+               [pageSize]="data._meta.max_results"
+               [pageIndex]="data._meta.page - 1"
+               (page)="onPage($event)">
+</mat-paginator>
+</div>
