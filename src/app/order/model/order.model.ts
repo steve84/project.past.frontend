@@ -1,8 +1,11 @@
-import { BaseModel } from 'src/app/base/model/base.model';
+import { BaseModel } from '../../base/model/base.model';
 
-export interface Order extends BaseModel {
-    id: number;
+export class Order extends BaseModel {
     buy: boolean;
     qty: number;
     price: number;
+    exchange: number;
+    currency: number;
+    user: number;
+    order_type: number;
 }

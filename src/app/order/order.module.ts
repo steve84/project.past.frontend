@@ -5,15 +5,34 @@ import { OrderService } from './service/order.service';
 import { OrderRoutingModule } from './order-routing.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { OrderDetailComponent } from './component/order-detail/order-detail.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSortModule } from '@angular/material/sort';
+import { ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
     declarations: [
-        OrderTableComponent
+        OrderTableComponent,
+        OrderDetailComponent
     ],
     imports: [
-        OrderRoutingModule,
+        ReactiveFormsModule,
         CommonModule,
         MatTableModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatFormFieldModule,
+        OrderRoutingModule,
+        MatCardModule,
+        MatInputModule,
+        MatButtonModule,
+        MatSelectModule,
+        MatRadioModule,
+        MatSortModule
     ],
     providers: [
         OrderService

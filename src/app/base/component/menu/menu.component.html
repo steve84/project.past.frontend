@@ -1,3 +1,15 @@
-<button mat-raised-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</button>
-<mat-divider [vertical]="true"></mat-divider>
-<button mat-raised-button routerLink="/order" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Order</button>
+<nav class="level">
+    <!-- Left side -->
+    <div class="level-left">
+      <div class="level-item">
+        <button mat-raised-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</button>
+      </div>
+      <div class="level-item">
+        <button mat-raised-button routerLink="/order/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Show orders</button>
+      </div>
+      <div class="level-item">
+        <button mat-raised-button routerLink="/order/create" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Create order</button>
+      </div>
+    </div>
+</nav>
+

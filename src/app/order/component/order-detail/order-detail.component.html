@@ -1,0 +1,64 @@
+<mat-card>
+    <mat-card-title>Order Creation/Modification</mat-card-title>
+    <form [formGroup]="orderForm" (ngSubmit)="upsertOrder()">
+        <mat-card-content>
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <mat-label>Exchange</mat-label>
+                </div>
+                <div class="column is-four-fifth">
+                    <mat-select formControlName="exchange">
+                        <mat-option *ngFor="let exchange of exchanges" [value]="exchange.id">
+                            {{exchange.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <mat-label>Side</mat-label>
+                </div>
+                <div class="column is-four-fifth">
+                    <mat-radio-group formControlName="side">
+                        <mat-radio-button *ngFor="let side of sides" [value]="side.value">
+                            {{side.name}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <mat-label>Currency</mat-label>
+                </div>
+                <div class="column is-four-fifth">
+                    <mat-select formControlName="currency">
+                        <mat-option *ngFor="let currency of currencies" [value]="currency.id">
+                            {{currency.name}}
+                        </mat-option>
+                    </mat-select>
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <mat-label>Quantity</mat-label>
+                </div>
+                <div class="column is-four-fifth">
+
+                    <input matInput type="number" formControlName="quantity">
+                </div>
+            </div>
+            <div class="columns">
+                <div class="column is-one-fifth">
+                    <mat-label>Price</mat-label>
+                </div>
+                <div class="column is-four-fifth">
+                    <input matInput type="number" formControlName="price">
+                </div>
+            </div>
+        </mat-card-content>
+        <mat-card-footer>
+            <button mat-raised-button type="submit" [disabled]="!orderForm.valid" color="primary">Create/Update</button>
+            <button mat-raised-button>Abort</button>
+        </mat-card-footer>
+    </form>
+</mat-card>

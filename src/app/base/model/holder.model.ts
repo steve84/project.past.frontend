@@ -1,4 +1,4 @@
-export interface HolderModel<T> {
+export class HolderModel<T> {
     _items: T[];
     _links: {
         parent: {
