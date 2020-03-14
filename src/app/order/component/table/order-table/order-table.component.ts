@@ -35,10 +35,10 @@ export class OrderTableComponent implements OnInit {
     }
 
     onSort(event: Sort) {
-        debugger
         this.orderBy = event.active;
         this.direction = event.direction;
         this.data = this.orderService.getOrderPage(this.page, this.max_results, this.orderBy, this.direction);
     }
+
 
 }

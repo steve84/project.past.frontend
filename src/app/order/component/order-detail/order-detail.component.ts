@@ -36,7 +36,7 @@ export class OrderDetailComponent implements OnInit {
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.orderId = this.activatedRoute.snapshot.params.order_id;
+    this.orderId = +this.activatedRoute.snapshot.params.order_id;
 
     if (!!this.orderId) {
         this.orderService.getOrder(this.orderId).subscribe((order: Order) => {
