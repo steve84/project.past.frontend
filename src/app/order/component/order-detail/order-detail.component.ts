@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { OrderService } from '../../service/order.service';
 import { ExchangeService } from '../../../exchange/service/exchange.service';
@@ -6,7 +7,7 @@ import { CurrencyService } from '../../../currency/service/currency.service';
 import { Exchange } from '../../../exchange/model/exchange.model';
 import { Currency } from '../../../currency/model/currency.model';
 import { Order } from '../../model/order.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
@@ -31,11 +32,12 @@ export class OrderDetailComponent implements OnInit {
     orderId: number;
     order = new Order();
 
-  constructor(private orderService: OrderService,
+  constructor(private activatedRoute: ActivatedRoute,
+              private location: Location,
+              private orderService: OrderService,
               private exchangeService: ExchangeService,
               private currencyService: CurrencyService,
-              private userService: UserService,
-              private activatedRoute: ActivatedRoute) { }
+              private userService: UserService) { }
 
   ngOnInit(): void {
     this.orderId = +this.activatedRoute.snapshot.params.order_id;
@@ -73,6 +75,10 @@ export class OrderDetailComponent implements OnInit {
     } else {
         this.orderService.createOrder(this.order).subscribe(() => {});
     }
+  }
+
+  cancel() {
+      this.location.back();
   }
 
 }

@@ -15,8 +15,13 @@ export class OrderService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getOrderPage(page?: number, max_results?: number, orderBy?: string, direction?: SortDirection): Observable<HolderModel<Order>> {
+    getOrderPage(userId: number, page?: number, max_results?: number, orderBy?: string, direction?: SortDirection): Observable<HolderModel<Order>> {
         let params = new HttpParams();
+
+        // Show only orders of logged in user
+        params = params.append('where', 'user==' + userId);
+        // Include entities of foreign tables (not only ids)
+        params = params.append('embedded', '{"exchange": 1, "currency": 1, "order_type": 1}');
 
         if (!!page) {
             params = params.append('page', page.toString());
@@ -27,6 +32,7 @@ export class OrderService {
         if (!!orderBy) {
             params = params.append('sort', (direction === 'desc' ? '-' : '') + orderBy);
         }
+
         return this.httpClient.get<HolderModel<Order>>(this.url, { params: params });
     }
 

@@ -31,7 +31,7 @@ export class Interceptor implements HttpInterceptor {
 
         const customReq = req.clone({
             headers: headers,
-            url: req.url.replace('localhost', '192.168.1.127')
+            //url: req.url.replace('localhost', '192.168.1.127')
         });
 
         if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {

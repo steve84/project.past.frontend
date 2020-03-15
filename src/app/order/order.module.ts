@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { OrderTableComponent } from './component/table/order-table/order-table.component';
 import { OrderService } from './service/order.service';
@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
+import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -32,9 +33,11 @@ import { ReactiveFormsModule } from '@angular/forms';
         MatButtonModule,
         MatSelectModule,
         MatRadioModule,
-        MatSortModule
+        MatSortModule,
+        MatIconModule
     ],
     providers: [
+        DatePipe,
         OrderService
     ]
 })
