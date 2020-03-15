@@ -5,3 +5,8 @@ export class User extends BaseModel {
     password: string;
     name: string;
 }
+
+export class UserLoginDTO {
+    token: string;
+    username: string;
+}

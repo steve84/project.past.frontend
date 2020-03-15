@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
-import { take } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -15,17 +16,20 @@ export class LoginComponent implements OnInit {
         password: new FormControl('', [Validators.required]),
     });
 
-    constructor(private userService: UserService) { }
+    constructor(private router: Router,
+                private userService: UserService) { }
 
     ngOnInit() {
     }
 
     login() {
-        this.userService.login(this.loginForm.get('username').value, this.loginForm.get('password').value)
-            .pipe(take(1))
-            .subscribe((resp: any) => {
-                localStorage.setItem('token', resp.token);
+        this.userService.login(this.loginForm.get('username').value, this.loginForm.get('password').value).pipe(
+            switchMap(loginResp => {
+                localStorage.setItem('token', loginResp.token);
+                return this.userService.getUser(this.loginForm.get('username').value)
+            })).subscribe((userResp) => {
+                this.userService.setActualUser(userResp);
+                this.router.navigate(['/']);
             });
     }
-
 }

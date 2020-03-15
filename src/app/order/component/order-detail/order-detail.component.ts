@@ -7,6 +7,7 @@ import { Exchange } from '../../../exchange/model/exchange.model';
 import { Currency } from '../../../currency/model/currency.model';
 import { Order } from '../../model/order.model';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/app/user/service/user.service';
 
 @Component({
   selector: 'app-order-detail',
@@ -33,6 +34,7 @@ export class OrderDetailComponent implements OnInit {
   constructor(private orderService: OrderService,
               private exchangeService: ExchangeService,
               private currencyService: CurrencyService,
+              private userService: UserService,
               private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -64,7 +66,7 @@ export class OrderDetailComponent implements OnInit {
           currency: this.orderForm.get('currency').value,
           qty: this.orderForm.get('quantity').value,
           price: this.orderForm.get('price').value,
-          user: 1
+          user: this.userService.getActualUser().id
       } as Order;
     if (!!this.orderId) {
         this.orderService.updateOrder(this.order).subscribe(() => {});
