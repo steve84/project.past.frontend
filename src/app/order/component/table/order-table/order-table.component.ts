@@ -50,7 +50,9 @@ export class OrderTableComponent implements OnInit {
         this.router.navigate(['order', order.id]);
     }
 
-    deleteOrder(order: Order) {}
+    deleteOrder(order: Order) {
+        this.orderService.deleteOrder(order).subscribe(() => {});
+    }
 
 
     getColumnValue(row: Order, col: string): string {
@@ -63,7 +65,7 @@ export class OrderTableComponent implements OnInit {
                 return row.buy ? 'Buy' : 'Sell';
             case '_created':
             case '_updated':
-                return this.datePipe.transform(row[col], 'dd.MM.yyyy HH:mm');
+                return this.datePipe.transform(row[col], 'short');
             default:
                 return row[col];
 

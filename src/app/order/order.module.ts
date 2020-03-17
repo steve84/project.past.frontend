@@ -15,11 +15,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+import { OrderHistoryTableComponent } from './component/table/order-history-table/order-history-table.component';
 
 @NgModule({
     declarations: [
         OrderTableComponent,
-        OrderDetailComponent
+        OrderDetailComponent,
+        OrderHistoryTableComponent
     ],
     imports: [
         ReactiveFormsModule,

@@ -11,24 +11,28 @@ export class Interceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         let headers = new HttpHeaders();
+
+        for (let k of req.headers.keys()) {
+            headers = headers.append(k, req.headers.get(k));
+        }
         if (req.method === 'POST' || req.method === 'PUT' || req.method === 'PATCH') {
-            headers = headers.append('Content-Type', 'application/json');
+            headers = this.appendHeaderIfNotExists(headers, 'Content-Type', 'application/json');
         }
 
         // Disable browser cache control
-        headers = headers.append('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0');
-        headers = headers.append('Pragma', 'no-cache');
-        headers = headers.append('Expires', '0');
+        headers = this.appendHeaderIfNotExists(headers, 'Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0');
+        headers = this.appendHeaderIfNotExists(headers, 'Pragma', 'no-cache');
+        headers = this.appendHeaderIfNotExists(headers, 'Expires', '0');
 
         if (!req.url.endsWith('login') || !req.url.endsWith('register')) {
-            headers = headers.append('Authorization', 'Bearer ' + localStorage.getItem('token'));
+            headers = this.appendHeaderIfNotExists(headers, 'Authorization', 'Bearer ' + localStorage.getItem('token'));
         }
 
         // Update
         if (req.method === 'PATCH' && !!req.body && !!req.body._etag) {
-            headers = headers.append('If-Match', req.body._etag);
+            headers = this.appendHeaderIfNotExists(headers, 'If-Match', req.body._etag);
         }
-
+        debugger
         const customReq = req.clone({
             headers: headers,
             //url: req.url.replace('localhost', '192.168.1.127')
@@ -50,5 +54,13 @@ export class Interceptor implements HttpInterceptor {
                 return throwError(err);
             })
         );
+    }
+
+
+    private appendHeaderIfNotExists(headers: HttpHeaders, key: string, value: string): HttpHeaders {
+        if (!headers.has(key)) {
+            headers = headers.append(key, value);
+        }
+        return headers;
     }
 }
