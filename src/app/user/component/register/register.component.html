@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-title>Register</mat-card-title>
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <form [formGroup]="registerForm">
         <mat-card-content>
             <div class="columns">
                 <div class="column is-two-fifth">
@@ -20,7 +20,7 @@
             </div>
         </mat-card-content>
         <mat-card-footer>
-            <button mat-raised-button type="submit" [disabled]="!registerForm.valid" color="primary">Register</button>
+            <button mat-raised-button type="submit" (click)="register()" [disabled]="!registerForm.valid" color="primary">Register</button>
         </mat-card-footer>
     </form>
 </mat-card>

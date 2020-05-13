@@ -14,6 +14,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSortModule } from '@angular/material/sort';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { OrderHistoryTableComponent } from './component/table/order-history-table/order-history-table.component';
 
@@ -36,7 +38,9 @@ import { OrderHistoryTableComponent } from './component/table/order-history-tabl
         MatSelectModule,
         MatRadioModule,
         MatSortModule,
-        MatIconModule
+        MatIconModule,
+        MatSnackBarModule,
+        ClipboardModule
     ],
     providers: [
         DatePipe,

@@ -9,6 +9,7 @@ const orderRoutes: Routes = [
     { path: 'list', component: OrderTableComponent },
     { path: 'add', component: OrderDetailComponent },
     { path: ':order_id', component: OrderDetailComponent },
+    { path: ':order_id/show', component: OrderDetailComponent },
     { path: 'history/list', component: OrderHistoryTableComponent },
 ];
 

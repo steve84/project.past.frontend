@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-title>Login</mat-card-title>
-    <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <form [formGroup]="loginForm">
         <mat-card-content>
             <div class="columns">
                 <div class="column is-two-fifth">
@@ -20,7 +20,7 @@
             </div>
         </mat-card-content>
         <mat-card-footer>
-            <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary">Login</button>
+            <button mat-raised-button type="submit" (click)="login()" [disabled]="!loginForm.valid" color="primary">Login</button>
         </mat-card-footer>
     </form>
 </mat-card>

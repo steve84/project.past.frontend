@@ -1,3 +1,7 @@
 .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
   }
+
+div.tile.is-vertical {
+    margin-left: 0.5em;
+}

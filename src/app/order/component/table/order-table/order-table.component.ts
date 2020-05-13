@@ -46,6 +46,10 @@ export class OrderTableComponent implements OnInit {
         this.data = this.orderService.getOrderPage(this.userService.getActualUser().id, this.page, this.max_results, this.orderBy, this.direction);
     }
 
+    showOrder(order: Order) {
+        this.router.navigate(['order', order.id, 'show']);
+    }
+
     editOrder(order: Order) {
         this.router.navigate(['order', order.id]);
     }
